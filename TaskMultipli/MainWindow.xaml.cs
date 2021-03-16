@@ -47,7 +47,7 @@ namespace TaskMultipli
                 if ((c / a) % 2 == 0)
                 {
                     multipli++;
-                }
+                } 
             }
             return multipli;
         }
