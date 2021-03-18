@@ -30,6 +30,11 @@ namespace TaskMultipli
         private void BtnEsegui_Click(object sender, RoutedEventArgs e)
         {
             int a = int.Parse(txtNumero.Text);
+
+            Progress.Minimum = 0;
+            Progress.Maximum = 200000000;
+            Progress.Value = 0;
+             
             Task<int> t1 = Task.Factory.StartNew(() => TrovaMultipli(a),
                 CancellationToken.None,
                 TaskCreationOptions.LongRunning,
@@ -39,15 +44,15 @@ namespace TaskMultipli
 
         }
 
-        public static int TrovaMultipli(int a)
+        public int TrovaMultipli(int a)
         {
             int multipli = 0;
             for(int c = 0; c < 200000000; c++)
             {
-                if ((c / a) % 2 == 0)
+                if (c % a== 0)
                 {
                     multipli++;
-                } 
+                }
             }
             return multipli;
         }
