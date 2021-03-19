@@ -32,7 +32,7 @@ namespace TaskMultipli
             int a = int.Parse(txtNumero.Text);
 
             Progress.Minimum = 0;
-            Progress.Maximum = 200000000;
+            Progress.Maximum = 100;
             Progress.Value = 0;
              
             Task<int> t1 = Task.Factory.StartNew(() => TrovaMultipli(a),
@@ -40,11 +40,11 @@ namespace TaskMultipli
                 TaskCreationOptions.LongRunning,
                 TaskScheduler.Default
                 );
-            lblOutput.Content = $"{t1.Result}";
+            //lblOutput.Content = $"{t1.Result}";
 
         }
 
-        public int TrovaMultipli(int a)
+        private int TrovaMultipli(int a)
         {
             int multipli = 0;
             for(int c = 0; c < 200000000; c++)
@@ -53,7 +53,18 @@ namespace TaskMultipli
                 {
                     multipli++;
                 }
+                if (c % 2000000 == 0)
+                {
+                    Progress.Dispatcher.Invoke(() =>
+                    {
+                        Progress.Value++;
+                    });
+                }
             }
+            lblOutput.Dispatcher.Invoke(() =>
+            {
+                lblOutput.Content = multipli;
+            });
             return multipli;
         }
     }
