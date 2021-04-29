@@ -34,33 +34,38 @@ namespace TaskMultipli
             Progress.Minimum = 0;
             Progress.Maximum = 100;
             Progress.Value = 0;
-             
-            Task<int> t1 = Task.Factory.StartNew(() => TrovaMultipli(a),
-                CancellationToken.None,
-                TaskCreationOptions.LongRunning,
-                TaskScheduler.Default
-                );
+
+            TrovaMultipli(a);
+            //Task<int> t1 = Task.Factory.StartNew(() => TrovaMultipli(a),
+            //    CancellationToken.None,
+            //    TaskCreationOptions.LongRunning,
+            //    TaskScheduler.Default
+            //    );
             //lblOutput.Content = $"{t1.Result}";
 
         }
 
-        private int TrovaMultipli(int a)
+        private async Task<int> TrovaMultipli(int a)
         {
             int multipli = 0;
-            for(int c = 0; c < 200000000; c++)
+            await Task.Run(() =>
             {
-                if (c % a== 0)
+                for (int c = 0; c < 200000000; c++)
                 {
-                    multipli++;
-                }
-                if (c % 2000000 == 0)
-                {
-                    Progress.Dispatcher.Invoke(() =>
+                    if (c % a == 0)
                     {
-                        Progress.Value++;
-                    });
+                        multipli++;
+                    }
+                    if (c % 2000000 == 0)
+                    {
+                        Progress.Dispatcher.Invoke(() =>
+                        {
+                            Progress.Value++;
+                        });
+                    }
                 }
-            }
+            });
+            
             lblOutput.Dispatcher.Invoke(() =>
             {
                 lblOutput.Content = multipli;
