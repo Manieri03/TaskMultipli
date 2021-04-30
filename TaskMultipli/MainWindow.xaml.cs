@@ -72,5 +72,26 @@ namespace TaskMultipli
             });
             return multipli;
         }
+
+        private void btnPrimi_Click(object sender, RoutedEventArgs e)
+        {
+            lblPrimi.Content = "";
+            bool nprimo = true;
+            int a = int.Parse(txtNumero.Text);
+            for (int c = 2; c <= a / 2; c++)
+            {
+                if (a % c == 0)
+                    nprimo = false;
+            }
+            if (nprimo == false)
+            {
+                lblPrimi.Content = "Non è un numero primo";
+            }
+            else
+            {
+                lblPrimi.Content = "E' un numero primo ";
+            }
+
+        }
     }
 }

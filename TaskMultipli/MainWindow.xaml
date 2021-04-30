@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskMultipli"
         mc:Ignorable="d"
-        Title="MainWindow" Height="110" Width="900">
+        Title="MainWindow" Height="170" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"></ColumnDefinition>
@@ -16,6 +16,10 @@
             <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Numero A:"></Label>
         </StackPanel>
@@ -35,18 +39,17 @@
             <Button x:Name="btnEsegui" Content="Esegui" Width="70" Click="BtnEsegui_Click"></Button>
         </StackPanel>
 
-        <StackPanel Grid.Column="6">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Button Content="Calcola" Grid.Row="0" x:Name="btnPrimi" Width="50" Height="25"></Button>
-                <Label Grid.Row="1" x:Name="lblPrimi" Width="50" Height="25"></Label>
-            </Grid>
-            
+        <StackPanel Grid.Column="4" Grid.Row="1" VerticalAlignment="Center">
+            <Button Content="Calcola" Grid.Row="0" x:Name="btnPrimi" Width="50" Height="25" VerticalAlignment="Center" Click="btnPrimi_Click"></Button>
         </StackPanel>
         
+        <StackPanel Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Label x:Name="lblPrimi" Height="25" VerticalAlignment="Center"></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="E'un numero primo?"></Label>
+        </StackPanel>
+
     </Grid>
 </Window>
